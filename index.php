@@ -11,6 +11,11 @@
         $email = $_POST['email'];
         $dishes = $_POST['dishes'];
 
+        // non-empty 
+        if (empty($guestName) || empty($roomNumber) || empty($mobileNumber) || empty($email)) {
+            die("All fields are required");
+        }
+
         // Email validation
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             die("Invalid email address");
@@ -28,6 +33,7 @@
         $sql = "insert into `guest_details` (guestName, roomNumber, mobileNumber, email, selectedDishes) values ('$guestName', '$roomNumber', '$mobileNumber', '$email', '$dishesString' )";
         $result = mysqli_query($Connectdb, $sql);
         if ($result){
+            echo '<script>alert("Data saved successfully");</script>';
             header('location:index.php');           
         }else{
           die(mysqli_error(($Connectdb)));
