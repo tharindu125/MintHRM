@@ -3,7 +3,6 @@
     include 'connect.php';
     
     if(isset($_POST['submit'])){
-
         // Retrieve  values
         $guestName = $_POST['guestName'];
         $roomNumber = $_POST['roomNum'];
@@ -12,10 +11,9 @@
         if (isset($_POST['dishes'])) {
             $dishes = $_POST['dishes'];
         } else{
-            die('<script>alert("All fields are required !!!");</script>');
+            die('<script>alert("All fields are required !!!");</script>');           
         }
        
-
         // // non-empty 
         // if (empty($guestName) || empty($roomNumber) || empty($mobileNumber) || empty($email) || empty($dishes)) {
         //     die('<script>alert("All fields are required !!!");</script>');
@@ -38,8 +36,7 @@
         $sql = "insert into `guest_details` (guestName, roomNumber, mobileNumber, email, selectedDishes) values ('$guestName', '$roomNumber', '$mobileNumber', '$email', '$dishesString' )";
         $result = mysqli_query($Connectdb, $sql);
         if ($result){
-            echo '<script>alert("Data saved successfully");</script>';
-            // header('location:index.php');           
+            header('location:index.php');           
         }else{
           die(mysqli_error(($Connectdb)));
         }
@@ -62,7 +59,7 @@
         <div class="container">
 
             <h1>Mint Cafe & Restaurant</h1>
-
+            
             <form method="post" class="form" action="index.php">
 
                 <div class="body01">
