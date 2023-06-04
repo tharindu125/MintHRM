@@ -9,12 +9,17 @@
         $roomNumber = $_POST['roomNum'];
         $mobileNumber = $_POST['mobileNum'];
         $email = $_POST['email'];
-        $dishes = $_POST['dishes'];
-
-        // non-empty 
-        if (empty($guestName) || empty($roomNumber) || empty($mobileNumber) || empty($email)) {
-            die("All fields are required");
+        if (isset($_POST['dishes'])) {
+            $dishes = $_POST['dishes'];
+        } else{
+            die('<script>alert("All fields are required !!!");</script>');
         }
+       
+
+        // // non-empty 
+        // if (empty($guestName) || empty($roomNumber) || empty($mobileNumber) || empty($email) || empty($dishes)) {
+        //     die('<script>alert("All fields are required !!!");</script>');
+        // }
 
         // Email validation
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -34,7 +39,7 @@
         $result = mysqli_query($Connectdb, $sql);
         if ($result){
             echo '<script>alert("Data saved successfully");</script>';
-            header('location:index.php');           
+            // header('location:index.php');           
         }else{
           die(mysqli_error(($Connectdb)));
         }
@@ -58,47 +63,47 @@
 
             <h1>Mint Cafe & Restaurant</h1>
 
-            <form method="post" class="form">
+            <form method="post" class="form" action="index.php">
 
                 <div class="body01">
                     <label>Guest Name :</label><br/>
-                    <input type="text" name="guestName" placeholder="Enter Guest Name">
+                    <input type="text" name="guestName" placeholder="Enter Guest Name" required autocomplete="off">
                 </div>
 
                 <div class="body01">
                     <label>Room Number :</label><br/>
-                    <input type="number" name="roomNum" placeholder="Enter Room Number">
+                    <input type="number" name="roomNum" placeholder="Enter Room Number" required autocomplete="off">
                 </div>
 
                 <div class="body01">
                     <label>Mobile Number :</label><br/>
-                    <input type="number" name="mobileNum" placeholder="Enter Mobile Number">
+                    <input type="number" name="mobileNum" placeholder="Enter Mobile Number" required autocomplete="off">
                 </div>
 
                 <div class="body01">
                     <label>E-mail Address :</label><br/>
-                    <input type="email" name="email" placeholder="Enter e-mail">
+                    <input type="email" name="email" placeholder="Enter e-mail" required autocomplete="off">
                 </div>
 
                 <div>
                     <p>Food Cuisine</p>
                     <div class="body02">
-                        <label class='body02_lbl'># Indian :</label><br/>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 01"> Test Dish 01</label>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 02"> Test Dish 02</label>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 03"> Test Dish 03</label>
+                        <label class='body02_lbl'>🍲 Indian :</label><br/>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 01 - Indian"> Test Dish 01</label>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 02 - Indian"> Test Dish 02</label>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 03 - Indian"> Test Dish 03</label>
                     </div>
                     <div class="body02">
-                        <label class='body02_lbl'># Sri Lankan :</label><br/>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 04"> Test Dish 04</label>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 05"> Test Dish 05</label>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 06"> Test Dish 06</label>
+                        <label class='body02_lbl'>🍝 Sri Lankan :</label><br/>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 04 - Sri Lankan"> Test Dish 04</label>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 05 - Sri Lankan"> Test Dish 05</label>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 06 - Sri Lankan"> Test Dish 06</label>
                     </div>
                     <div class="body02">
-                        <label class='body02_lbl'># Chinese :</label><br/>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 07"> Test Dish 07</label>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 08"> Test Dish 08</label>
-                        <label><input type="checkbox" name="dishes[]" value="Test Dish 09"> Test Dish 09</label>
+                        <label class='body02_lbl'>🥣 Chinese :</label><br/>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 07 - Chinese"> Test Dish 07</label>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 08 - Chinese"> Test Dish 08</label>
+                        <label><input type="checkbox" name="dishes[]" value="Test Dish 09 - Chinese"> Test Dish 09</label>
                     </div>
                     
                 </div>
